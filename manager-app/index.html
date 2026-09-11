@@ -11,6 +11,7 @@ body{max-width:600px;margin:24px auto;padding:0 16px;font-family:sans-serif;}
 .del-btn{background:#c22;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;}
 .tip{color:red;font-size:14px;min-height:20px;}
 .search-box{margin:12px 0;}
+#clear-all-btn{margin:10px 0;background:#666;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -24,6 +25,8 @@ body{max-width:600px;margin:24px auto;padding:0 16px;font-family:sans-serif;}
   <div>评分(1-5)：<input type="number" min="1" max="5" id="rating-input"></div>
   <button type="submit">添加图书</button>
 </form>
+
+<button id="clear-all-btn">清空全部图书</button>
 
 <div class="search-box">
   <input type="text" id="search-author" placeholder="按作者筛选图书">

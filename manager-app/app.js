@@ -5,6 +5,7 @@ const ratingInput = document.querySelector('#rating-input');
 const tip = document.querySelector('#tip');
 const list = document.querySelector('#book-list');
 const searchAuthorInput = document.querySelector('#search-author');
+const clearAllBtn = document.querySelector('#clear-all-btn');
 
 let books = JSON.parse(localStorage.getItem('books') || '[]');
 
@@ -77,12 +78,19 @@ searchAuthorInput.addEventListener('input',()=>{
   render();
 });
 
-// 事件委托删除，已经写在代码里面，不用再额外粘贴
 list.addEventListener('click',e=>{
   const delBtn = e.target.closest('.del-btn');
   if(delBtn){
     const delId = Number(delBtn.dataset.id);
     books = books.filter(b=>b.id !== delId);
+    save();
+    render();
+  }
+});
+
+clearAllBtn.addEventListener('click', ()=>{
+  if(confirm("确定要清空所有图书记录吗？")){
+    books = [];
     save();
     render();
   }
