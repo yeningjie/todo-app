@@ -1,25 +1,21 @@
-const form = document.querySelector('#add‑form');
-const titleInput = document.querySelector('#title‑input');
-const authorInput = document.querySelector('#author‑input');
-const ratingInput = document.querySelector('#rating‑input');
+const form = document.querySelector('#add-form');
+const titleInput = document.querySelector('#title-input');
+const authorInput = document.querySelector('#author-input');
+const ratingInput = document.querySelector('#rating-input');
 const tip = document.querySelector('#tip');
-const list = document.querySelector('#book‑list');
-const searchAuthorInput = document.querySelector('#search‑author');
+const list = document.querySelector('#book-list');
+const searchAuthorInput = document.querySelector('#search-author');
 
-// 从本地存储恢复
 let books = JSON.parse(localStorage.getItem('books') || '[]');
 
-// 保存函数
 const save = ()=>{
   localStorage.setItem('books', JSON.stringify(books));
 };
 
-// 当前筛选作者关键词
 let filterAuthor = '';
 
 const render = ()=>{
   list.innerHTML = '';
-  // 过滤
   let showList = books;
   if(filterAuthor.trim()!==''){
     showList = books.filter(b=>b.author.includes(filterAuthor));
@@ -39,20 +35,22 @@ const render = ()=>{
       <div>书名：${book.title}</div>
       <div>作者：${book.author}</div>
       <div>评分：${book.rating}</div>
-      <button class="del‑btn" data‑id="${book.id}">删除</button>
+      <button class="del-btn" data-id="${book.id}">删除</button>
     `;
     list.appendChild(li);
   });
 };
 
-// 添加图书
 form.addEventListener('submit',e=>{
   e.preventDefault();
   const title = titleInput.value.trim();
   const author = authorInput.value.trim();
-  const rating = Number(ratingInput.value.trim());
+  let rating = Number(ratingInput.value.trim());
 
-  // 输入校验
+  if(isNaN(rating) || rating<1 || rating>5){
+    rating = 3;
+  }
+
   if(title === ''){
     tip.textContent = '书名不能为空！';
     return;
@@ -60,7 +58,7 @@ form.addEventListener('submit',e=>{
   tip.textContent = '';
 
   const newBook = {
-    id: Date.now(), // 使用时间戳充当唯一id
+    id: Date.now(),
     title,
     author,
     rating
@@ -69,16 +67,25 @@ form.addEventListener('submit',e=>{
   save();
   render();
 
-  //清空表单
   titleInput.value = '';
   authorInput.value = '';
   ratingInput.value = '';
 });
 
-// 搜索筛选
 searchAuthorInput.addEventListener('input',()=>{
   filterAuthor = searchAuthorInput.value.trim();
   render();
+});
+
+// 事件委托删除，已经写在代码里面，不用再额外粘贴
+list.addEventListener('click',e=>{
+  const delBtn = e.target.closest('.del-btn');
+  if(delBtn){
+    const delId = Number(delBtn.dataset.id);
+    books = books.filter(b=>b.id !== delId);
+    save();
+    render();
+  }
 });
 
 render();

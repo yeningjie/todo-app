@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh‑CN">
+<html lang="zh-CN">
 <head>
-<meta charset="UTF‑8">
-<meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>图书收藏管理</title>
 <style>
-*{box‑sizing:border‑box;}
-body{max‑width:600px;margin:24px auto;padding:0 16px;font‑family:sans‑serif;}
-.item{padding:10px;border:1px solid #ccc;margin:8px 0;border‑radius:6px;}
-.del‑btn{background:#c22;color:white;border:none;padding:4px 8px;border‑radius:4px;cursor:pointer;}
-.tip{color:red;font‑size:14px;min‑height:20px;}
-.search‑box{margin:12px 0;}
+*{box-sizing:border-box;}
+body{max-width:600px;margin:24px auto;padding:0 16px;font-family:sans-serif;}
+.item{padding:10px;border:1px solid #ccc;margin:8px 0;border-radius:6px;}
+.del-btn{background:#c22;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;}
+.tip{color:red;font-size:14px;min-height:20px;}
+.search-box{margin:12px 0;}
 </style>
 </head>
 <body>
@@ -18,18 +18,18 @@ body{max‑width:600px;margin:24px auto;padding:0 16px;font‑family:sans‑seri
 
 <div class="tip" id="tip"></div>
 
-<form id="add‑form">
-  <div>书名：<input type="text" id="title‑input" placeholder="输入图书名称"></div>
-  <div>作者：<input type="text" id="author‑input" placeholder="输入作者"></div>
-  <div>评分(1‑5)：<input type="number" min="1" max="5" id="rating‑input"></div>
+<form id="add-form">
+  <div>书名：<input type="text" id="title-input" placeholder="输入图书名称"></div>
+  <div>作者：<input type="text" id="author-input" placeholder="输入作者"></div>
+  <div>评分(1-5)：<input type="number" min="1" max="5" id="rating-input"></div>
   <button type="submit">添加图书</button>
 </form>
 
-<div class="search‑box">
-  <input type="text" id="search‑author" placeholder="按作者筛选图书">
+<div class="search-box">
+  <input type="text" id="search-author" placeholder="按作者筛选图书">
 </div>
 
-<ul id="book‑list"></ul>
+<ul id="book-list"></ul>
 
 <script src="app.js"></script>
 </body>
